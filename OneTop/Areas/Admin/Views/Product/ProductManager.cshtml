@@ -2,15 +2,14 @@
     Layout = "/Views/Shared/_AdminLayout.cshtml";
 
 }
-@model List<OneTop.Models.Product>
-
+@model OneTop.ViewModels.ProductManagerVM
 @section Styles {
     <link rel="stylesheet" href="~/admin/css/asset/css_part/Product/ProductManager.css" asp-append-version="true" />
 }
 <main class="admin-product-manager">
     <div class="pm-header">
         <h1>Product Manager</h1>
-        <form method="post" asp-action="SearchByName" asp-controller="Product">
+        <form method="post" asp-action="ProductManager" asp-controller="Product">
         <div class="pm-controls">
             <div class="pm-search">
                     <input type="search" name="txtKeywords" placeholder="Search products..." aria-label="Search products" />
@@ -37,21 +36,21 @@
                         <th class="col-actions">Actions</th>
                     </tr>
                 </thead>
+                
                 <tbody id="product-list">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Products)
                     {
                         <tr>
                             <td>@item.ProductId</td>
                             <td class="col-image">
                                 <img src="@(string.IsNullOrEmpty(item.ImageUrl)
-                                         ? Url.Content("~/img/no-image.png")
-                                         : item.ImageUrl.StartsWith("http")
-                                             ? item.ImageUrl
-                                             : Url.Content("~/img/" + item.ImageUrl))"
+                                                          ? Url.Content("~/img/no-image.png")
+                                                          : item.ImageUrl.StartsWith("http")
+                                                              ? item.ImageUrl
+                                                              : Url.Content("~/img/" + item.ImageUrl))"
                                  alt="@item.ProductName"
                                  style="width:80px"
                                  onerror="this.src='/img/no-image.png'" />
-
                         </td>
 
                             <td class="col-name">@item.ProductName</td>
@@ -60,14 +59,22 @@
                             <td class="col-stock">@item.Stock</td>
                             <td class="col-discount">@item.DiscountPercent</td>
                             <td class="col-actions">
-                                <a class="btn btn-sm" asp-area="admin" asp-action="EditProduct" asp-controller="Product" asp-route-id="@item.ProductId">Edit</a>
-                                <a class="btn btn-sm btn-primary" asp-area="admin" asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@item.ProductId">Delete</a>
+                                <a class="btn btn-sm"
+                                   asp-area="admin"
+                                   asp-action="EditProduct"
+                                   asp-controller="Product"
+                                   asp-route-id="@item.ProductId">Edit</a>
+
+                                <a class="btn btn-sm btn-primary"
+                                   asp-area="admin"
+                                   asp-action="DeleteProduct"
+                                   asp-controller="Product"
+                                   asp-route-id="@item.ProductId">Delete</a>
                             </td>
                         </tr>
-                    }
-
-
+                                        }
                 </tbody>
+
             </table>
         </div>
 

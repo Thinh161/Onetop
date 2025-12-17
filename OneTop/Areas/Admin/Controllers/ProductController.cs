@@ -1,5 +1,6 @@
-﻿using ClothingStore.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OneTop.Models;
+using OneTop.ViewModels;
 
 namespace ClothingStore.Areas.Admin.Controllers
 {
@@ -10,18 +11,39 @@ namespace ClothingStore.Areas.Admin.Controllers
         {
             this.context = context;
         }
+
+        [HttpGet]
         public IActionResult ProductManager()
         {
-            List<Product> products = context.Products.ToList();
-            return View(products);
+            var vm = new ProductManagerVM
+            {
+                Products = context.Products.ToList(),
+                Categories = context.Products.ToList()
+            };
+
+            return View(vm);
         }
 
         [HttpPost]
-        public IActionResult SearchByName()
+        public IActionResult ProductManager(string txtKeywords)
         {
-            string name = Request.Form["txtKeywords"].ToString();
-            List<Product> categories = context.Products.Where(x => x.ProductName.Contains(name)).ToList();
-            return View(categories);
+            var query = context.Products.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(txtKeywords))
+            {
+                var keyword = txtKeywords.Trim();
+                query = query.Where(x => x.ProductName.Contains(keyword));
+            }
+
+            var list = query.ToList();
+
+            var vm = new ProductManagerVM
+            {
+                Products = list,
+                Categories = list
+            };
+
+            return View(vm);
         }
         public IActionResult DeleteProduct(int id)
         {

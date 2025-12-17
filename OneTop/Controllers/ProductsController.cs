@@ -1,4 +1,4 @@
-﻿using ClothingStore.Models;
+﻿using OneTop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClothingStore.Controllers
