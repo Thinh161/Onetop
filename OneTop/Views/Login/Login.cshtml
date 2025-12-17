@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/asset/css_part/Login/Login.css" asp-append-version="true" />
+}
+
+<section class="auth-wrapper" aria-labelledby="loginHeading">
+    <div class="auth-card" role="region" aria-label="Login form">
+        <h1 id="loginHeading">Sign in to your account</h1>
+
+        <form method="post" action="#" class="login-form" autocomplete="on" novalidate>
+            <div class="field">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" required placeholder="username..." />
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input id="password" name="Password" type="password" required minlength="6" placeholder="••••••••" />
+            </div>
+
+            <div class="row">
+                <label class="checkbox">
+                    <input type="checkbox" name="RememberMe" />
+                    <span>Remember me</span>
+                </label>
+                <a class="text-link" href="/Account/ForgotPassword">Forgot?</a>
+            </div>
+
+            <button type="submit" class="btn-primary">Sign in</button>
+
+            <div class="divider"><span>or</span></div>
+
+            <div class="alt-actions">
+                <a class="btn-outline" asp-controller="Login" asp-action="Register">Create an account</a>
+            </div>
+        </form>
+    </div>
+
+    <aside class="auth-side">
+        <div class="brand">ClothingStore</div>
+        <p class="lead">Welcome back — sign in to manage your orders and checkout faster.</p>
+    </aside>
+</section>
+

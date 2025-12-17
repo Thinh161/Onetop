@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/asset/css_part/Login/Register.css" asp-append-version="true" />
+}
+<section class="auth-wrapper" aria-labelledby="registerHeading">
+    <div class="auth-card" role="region" aria-label="Register form">
+        <h1 id="registerHeading">Create an account</h1>
+
+        <form method="post" action="/Login/Register" class="register-form" autocomplete="on" novalidate>
+            @Html.AntiForgeryToken()
+            <!-- server will generate UserId; keep a hidden field for binding -->
+            <input type="hidden" name="UserId" value="" />
+
+            <div class="field">
+                <label for="userId">User ID (auto-generated)</label>
+                <input id="userId" type="text" value="Will be generated" disabled aria-disabled="true" />
+            </div>
+
+            <div class="field">
+                <label for="username">Username</label>
+                <input id="username" name="Username" type="text" required minlength="3" maxlength="50" placeholder="choose a username" />
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input id="password" name="Password" type="password" required minlength="6" maxlength="255" placeholder="••••••••" />
+            </div>
+
+            <div class="field">
+                <label for="fullName">Full name</label>
+                <input id="fullName" name="FullName" type="text" required maxlength="100" placeholder="Your full name" />
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="Email" type="email" required maxlength="100" placeholder="you@example.com" />
+            </div>
+
+            <button type="submit" class="btn-primary">Register</button>
+
+            <div class="divider"><span>or</span></div>
+
+            <div class="alt-actions">
+                <a class="btn-outline" href="/Login/Login">Already have an account? Sign in</a>
+            </div>
+        </form>
+    </div>
+
+    <aside class="auth-side">
+        <div class="brand">ClothingStore</div>
+        <p class="lead">Join us to manage orders, save favorites, and checkout faster.</p>
+    </aside>
+</section>
