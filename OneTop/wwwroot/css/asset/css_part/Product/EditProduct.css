@@ -135,6 +135,17 @@
     align-items:center;
     gap:.4rem;
 }
+.product-info h3 {
+    height: clamp(40px, 50px,60px );
+    font-size: 1rem;
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1.2;
+
+}
+.product-info a h3 {
+    text-decoration: none;
+}
 
 /* actions */
 .form-actions{

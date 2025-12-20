@@ -1,0 +1,69 @@
+﻿@model OneTop.Models.Product
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/asset/css_part/Product/product-detail.css" asp-append-version="true" />
+    
+}
+
+<main class="product-detail-page">
+
+    <div class="pd-layout">
+
+        <!-- LEFT: IMAGE -->
+        <div class="pd-left">
+            <img src="@(Model.ImageUrl?.StartsWith("http") == true
+                                         ? Model.ImageUrl
+                                         : Url.Content("~/img/" + Model.ImageUrl))"
+                 alt="@Model.ProductName"
+                 onerror="this.src='/img/no-image.png'" />
+        </div>
+
+        <!-- RIGHT: INFO -->
+        <div class="pd-right">
+            <h1 class="pd-name">@Model.ProductName</h1>
+
+            <p class="pd-category">
+                Danh mục: <strong>@Model.CategoryName</strong>
+            </p>
+
+            <span class="price-current">
+                @(((Model.Price * (100 - (Model.DiscountPercent ?? 0))) / 100m).ToString("N0")) đ
+            </span>
+
+
+            <span class="price-original">@Model.Price.ToString("N0") đ</span>
+            @if (Model.DiscountPercent.HasValue)
+            {
+                <p class="pd-discount">
+                    Giảm Giá: @Model.DiscountPercent %
+                </p>
+            }
+
+            <p class="pd-stock">
+               Trạng Thái: @(Model.Stock > 0 ? "Còn hàng" : "Hết hàng")
+            </p>
+
+            <div class="pd-actions">
+                <button type="button" class="btn btn-add-cart">
+                    Thêm vào giỏ
+                </button>
+
+                <a asp-controller="Product"
+                   asp-action="BuyNow"
+                   asp-route-id="@Model.ProductId"
+                   class="btn btn-buy-now">
+                    Mua ngay
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+    <section class="pd-description">
+        <h2>Mô tả sản phẩm</h2>
+        <p>@Model.Description</p>
+    </section>
+
+</main>

@@ -1,0 +1,128 @@
+﻿.product-detail-page {
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+/* main layout */
+.pd-layout {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* image */
+.pd-left img {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* right info */
+.pd-right {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    padding: 1.5rem;
+}
+
+.pd-name {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.pd-category {
+    font-size: .9rem;
+    color: var(--ep-muted);
+}
+
+.pd-price {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ep-accent);
+}
+
+.pd-discount {
+    color: #e53e3e;
+    font-weight: 500;
+}
+
+.pd-stock {
+    font-size: .9rem;
+    color: var(--ep-muted);
+}
+
+.pd-actions {
+    display: flex;
+    gap: .75rem;
+    margin-top: 1.2rem;
+}
+.pd-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 6rem;
+    
+}
+
+/* Thêm vào giỏ */
+.btn-add-cart {
+    width: 150px;
+    padding: .75rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid gray;
+    background: transparent;
+    color: var(--ep-accent);
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Mua ngay */
+.btn-buy-now {
+    width: 150px;
+    padding: .75rem 0.5rem;
+    border-radius: 6px;
+    background-color: red;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* hover */
+.btn-add-cart:hover {
+    background: rgba(255,107,107,0.08);
+}
+
+.btn-buy-now:hover {
+    filter: brightness(0.95);
+}
+
+/* description */
+.pd-description {
+    margin-top: 2.5rem;
+}
+
+    .pd-description h2 {
+        margin-bottom: .5rem;
+    }
+
+.price-original {
+    color: rgba(0,0,0,0.45);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+/* responsive */
+@media (max-width: 900px) {
+    .pd-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .pd-left img {
+        max-width: 420px;
+        margin: 0 auto;
+        display: block;
+    }
+}
+

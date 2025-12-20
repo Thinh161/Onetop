@@ -132,12 +132,21 @@
     gap: 6px;
 }
 
-.home-page .product-info h3 {
+.product-name a {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    color: inherit;
+}
+
+
+
+.home-page .product-info a h3 {
     height: clamp(40px, 50px ,60px );
     font-size: 1rem;
     color: var(--color-primary);
     margin: 0;
     line-height: 1.2;
+
 }
 
 .home-page .price {

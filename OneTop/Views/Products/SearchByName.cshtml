@@ -5,39 +5,26 @@
 <main class="home-page">
 
     <section class="featured-products">
-        <h2>Tất Cả Sản Phẩm</h2>
+        <h2>Sản Phẩm Tìm Kiếm</h2>
         <div class="product-grid">
             @foreach (var item in Model)
             {
                 <div class="product-card">
                     <div class="product-media">
-                        <a asp-controller="Products"
-                           asp-action="Detail"
-                           asp-route-id="@item.ProductId">
                         <img src="@(item.ImageUrl.StartsWith("http")
                                  ? item.ImageUrl
                                  : Url.Content("~/img/" + item.ImageUrl))"
                          alt="@item.ProductName"
                          onerror="this.src='/img/no-image.png'" />
-                         </a>
+
                         @* <span class="discount-badge">-25%</span> *@
                     </div>
 
                     <div class="product-info">
-                        <h3 class="product-name">
-                            <a asp-controller="Products"
-                               asp-action="Detail"
-                               asp-route-id="@item.ProductId">
-                                @item.ProductName
-                            </a>
-                        </h3>
+                        <h3>@item.ProductName</h3>
                         <p class="price">
-                            <span class="price-current">
-                                @(((item.Price * (100 - (item.DiscountPercent ?? 0))) / 100m).ToString("N0")) đ
-                            </span>
-
-
-                            <span class="price-original">@item.Price.ToString("N0") đ</span>
+                            <span class="price-current">@item.Price đ</span>
+                            @* <span class="price-original">@item.Price đ</span> *@
                         </p>
                     </div>
 

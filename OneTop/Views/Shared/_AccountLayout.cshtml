@@ -39,7 +39,9 @@
 
                 <div class="search-wrapper">
                     <span id="icon-search" class="material-symbols-outlined">search</span>
-                    <input id="menu-search" class="menu-search" type="search" placeholder="Tìm kiếm sản phẩm..." name="search" value="" />
+                    <form method="post" asp-action="SearchByName" asp-controller="Products">
+                        <input id="menu-search" name="txtKeywords" class="menu-search" type="search" placeholder="Tìm kiếm sản phẩm..." />
+                    </form>
                 </div>
             </div>
 

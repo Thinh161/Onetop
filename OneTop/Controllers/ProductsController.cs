@@ -32,5 +32,26 @@ namespace OneTop.Controllers
             List<Product> Accessories = context.Products.Where(p => p.CategoryName == "Accessories").ToList();
             return View(Accessories);
         }
+
+        [HttpPost]
+        public IActionResult SearchByName()
+        {
+            string name = Request.Form["txtKeywords"].ToString();
+            List<Product> categories = context.Products.Where(x => x.ProductName.Contains(name)).ToList();
+            return View(categories);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var product = context.Products.FirstOrDefault(p => p.ProductId == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
     }
 }

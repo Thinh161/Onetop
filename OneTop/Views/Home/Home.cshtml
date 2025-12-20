@@ -12,7 +12,7 @@
         </div>
     </section>
     <section class="featured-products">
-        <h2>All Products</h2>
+        <h2>Danh Sách Sản Phẩm</h2>
         <div class="product-grid">
            @foreach(var item in Model)
             {
@@ -30,10 +30,20 @@
                     </div>
 
                     <div class="product-info">
-                        <h3>@item.ProductName</h3>
+                        <h3 class="product-name">
+                            <a asp-controller="Products"
+                               asp-action="Detail"
+                               asp-route-id="@item.ProductId">
+                                @item.ProductName
+                            </a>
+                        </h3>
                         <p class="price">
-                            <span class="price-current">@item.Price đ</span>
-                            @*<span class="price-original">@item.Price đ</span>*@ 
+                            <span class="price-current">
+                                @(((item.Price * (100 - (item.DiscountPercent ?? 0))) / 100m).ToString("N0")) đ
+                            </span>
+
+
+                            <span class="price-original">@item.Price.ToString("N0") đ</span>
                         </p>
                     </div>
 
