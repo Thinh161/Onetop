@@ -1,4 +1,5 @@
-﻿@{
+﻿@model OneTop.Models.User
+@{
     ViewData["Title"] = "Register";
     Layout = "_Layout";
 }
@@ -9,34 +10,38 @@
     <div class="auth-card" role="region" aria-label="Register form">
         <h1 id="registerHeading">Create an account</h1>
 
-        <form method="post" action="/Login/Register" class="register-form" autocomplete="on" novalidate>
+        <form asp-action="Register" asp-controller="Login" method="post" class="register-form" autocomplete="on" novalidate>
             @Html.AntiForgeryToken()
-            <!-- server will generate UserId; keep a hidden field for binding -->
-            <input type="hidden" name="UserId" value="" />
 
             <div class="field">
                 <label for="userId">User ID (auto-generated)</label>
                 <input id="userId" type="text" value="Will be generated" disabled aria-disabled="true" />
             </div>
 
+            <div asp-validation-summary="All" class="validation-summary"></div>
+
             <div class="field">
-                <label for="username">Username</label>
-                <input id="username" name="Username" type="text" required minlength="3" maxlength="50" placeholder="choose a username" />
+                <label asp-for="Username"></label>
+                <input asp-for="Username" type="text" required minlength="3" maxlength="50" placeholder="choose a username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
             <div class="field">
-                <label for="password">Password</label>
-                <input id="password" name="Password" type="password" required minlength="6" maxlength="255" placeholder="••••••••" />
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" required minlength="6" maxlength="255" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="field">
-                <label for="fullName">Full name</label>
-                <input id="fullName" name="FullName" type="text" required maxlength="100" placeholder="Your full name" />
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" type="text" required maxlength="100" placeholder="Your full name" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
 
             <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="Email" type="email" required maxlength="100" placeholder="you@example.com" />
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" required maxlength="100" placeholder="you@example.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <button type="submit" class="btn-primary">Register</button>
@@ -44,7 +49,7 @@
             <div class="divider"><span>or</span></div>
 
             <div class="alt-actions">
-                <a class="btn-outline" href="/Login/Login">Already have an account? Sign in</a>
+                <a class="btn-outline" asp-controller="Login" asp-action="Login">Already have an account? Sign in</a>
             </div>
         </form>
     </div>
@@ -54,3 +59,7 @@
         <p class="lead">Join us to manage orders, save favorites, and checkout faster.</p>
     </aside>
 </section>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,40 +1,30 @@
-﻿@section Styles {
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
     <link rel="stylesheet" href="~/css/asset/css_part/Home/Home.css" asp-append-version="true" />
 }
 @model List<OneTop.Models.Product>
-
-
-    @if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Message"]
-    </div>
-}
-
 <main class="home-page">
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>Welcome to ClothingStore</h1>
-            <p>Your one-stop shop for the latest fashion trends.</p>
-            <a asp-controller="Products" asp-action="AllProduct" class="btn-shop-now">Shop Now</a>
-        </div>
-    </section>
+
     <section class="featured-products">
-        <h2>Danh Sách Sản Phẩm</h2>
+        <h2>Tất Cả Sản Phẩm</h2>
         <div class="product-grid">
-           @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <div class="product-card">
                     <div class="product-media">
-                        <img src="@(string.IsNullOrEmpty(item.ImageUrl)
-                                 ? Url.Content("~/img/no-image.png")
-                                 : item.ImageUrl.StartsWith("http")
-                                     ? item.ImageUrl
-                                     : Url.Content("~/img/" + item.ImageUrl))"
+                        <a asp-controller="Products"
+                           asp-action="Detail"
+                           asp-route-id="@item.ProductId">
+                        <img src="@(item.ImageUrl.StartsWith("http")
+                                 ? item.ImageUrl
+                                 : Url.Content("~/img/" + item.ImageUrl))"
                          alt="@item.ProductName"
-                        
                          onerror="this.src='/img/no-image.png'" />
-
+                         </a>
+                        @* <span class="discount-badge">-25%</span> *@
                     </div>
 
                     <div class="product-info">
@@ -56,14 +46,19 @@
                     </div>
 
                     <div class="product-actions">
+                        <a class="btn-cart"
+                           title="Add to cart"
+                           asp-controller="Cart"
+                           asp-action="AddToCart"
+                           asp-route-id="@item.ProductId">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </a>
 
-
-
-                        <a asp-controller="Login" asp-action="Login" class="btn-buy-now">Buy Now</a>
+                        <a asp-controller="Product" asp-action="BuyNow" asp-route-id="1" class="btn-buy-now">Buy Now</a>
                     </div>
                 </div>
             }
-            
+
         </div>
     </section>
 </main>

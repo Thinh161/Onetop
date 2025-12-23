@@ -1,5 +1,7 @@
 ﻿@model OneTop.Models.Product
-
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
 @section Styles {
     <link rel="stylesheet" href="~/css/asset/css_part/Product/product-detail.css" asp-append-version="true" />
     
@@ -44,10 +46,16 @@
             </p>
 
             <div class="pd-actions">
+                <button type="button" class="btn btn-add-cart">
+                    Thêm vào giỏ
+                </button>
 
-
-                <a asp-controller="Login" asp-action="Login"  class="btn-buy-now">Buy Now</a>
-
+                <a asp-controller="Product"
+                   asp-action="BuyNow"
+                   asp-route-id="@Model.ProductId"
+                   class="btn btn-buy-now">
+                    Mua ngay
+                </a>
             </div>
 
         </div>

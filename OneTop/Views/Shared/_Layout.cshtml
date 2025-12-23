@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var idUser = Context.Session.GetInt32("UserId");
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,12 +50,20 @@
             </div>
 
             <div class="header-chose">
-                <a asp-controller="Cart" asp-action="Index" class="cart">
-                    <span class="material-symbols-outlined">
-                        shopping_cart
-                    </span>
-                </a>
-                <a class="Login" asp-controller="Login" asp-action="Login">Login</a>
+                @if (idUser.HasValue)
+                {
+                    <a asp-controller="Cart" asp-action="Index" class="cart">
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+                    </a>
+                    <a class="Login" asp-controller="Login" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="Login" asp-controller="Login" asp-action="Login">Login</a>
+                }
+               
             </div>
         </div>
 
@@ -143,4 +154,4 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html>         

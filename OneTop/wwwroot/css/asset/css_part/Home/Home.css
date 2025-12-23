@@ -125,10 +125,12 @@
 }
 
 .home-page .product-info {
+    height: 100px;
     padding-top: 6px;
     padding-bottom: 6px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 6px;
 }
 

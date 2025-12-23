@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Account\Controllers\" />
     <Folder Include="Areas\Account\Data\" />
     <Folder Include="Areas\Account\Models\" />
-    <Folder Include="Areas\Account\Views\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>

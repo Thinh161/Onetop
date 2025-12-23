@@ -32,17 +32,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Area route: ensure requests like /Admin or /Account map to area controllers
 app.MapAreaControllerRoute(
- name: "myareas",
- areaName: "Admin",
- pattern: "Admin/{controller=DashBoard}/{action=DashBoard}/{id?}"
- );
+    name: "Admin_area",
+    areaName: "Admin",
+    pattern: "Admin/{controller=DashBoard}/{action=DashBoard}/{id?}");
 
 app.MapAreaControllerRoute(
- name: "myareas",
- areaName: "Account",
- pattern: "Account/{controller=Home}/{action=Home}/{id?}"
- );
+    name: "Account_area",
+    areaName: "Account",
+    pattern: "Account/{controller=Home}/{action=Home}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

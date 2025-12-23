@@ -1,12 +1,14 @@
-﻿@section Styles {
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
     <link rel="stylesheet" href="~/css/asset/css_part/Home/Home.css" asp-append-version="true" />
 }
 @model List<OneTop.Models.Product>
-
 <main class="home-page">
-   
+
     <section class="featured-products">
-        <h2>Quần</h2>
+        <h2>Phụ Kiện</h2>
         <div class="product-grid">
             @foreach (var item in Model)
             {
@@ -43,10 +45,15 @@
                     </div>
 
                     <div class="product-actions">
+                        <a class="btn-cart"
+                           title="Add to cart"
+                           asp-controller="Cart"
+                           asp-action="AddToCart"
+                           asp-route-id="@item.ProductId">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </a>
 
-
-                        <a asp-controller="Login" asp-action="Login" class="btn-buy-now">Buy Now</a>
-
+                        <a asp-controller="Product" asp-action="BuyNow" asp-route-id="1" class="btn-buy-now">Buy Now</a>
                     </div>
                 </div>
             }

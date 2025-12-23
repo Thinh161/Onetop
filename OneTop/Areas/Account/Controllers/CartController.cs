@@ -2,8 +2,9 @@
 using OneTop.Extensions;
 using OneTop.Models;
 
-namespace OneTop.Controllers
+namespace OneTop.Areas.Account.Controllers
 {
+
     public class CartController : Controller
     {
         private readonly ClothingStoreContext ctx;

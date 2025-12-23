@@ -1,8 +1,10 @@
-﻿using OneTop.Models;
+﻿using System.Linq;
+using OneTop.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OneTop.Controllers
+namespace OneTop.Areas.Account.Controllers
 {
+ 
     public class ProductsController : Controller
     {
         private ClothingStoreContext context;

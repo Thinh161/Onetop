@@ -1,4 +1,6 @@
-﻿@{
+﻿@model OneTop.Models.User
+
+@{
     ViewData["Title"] = "Login";
     Layout = "_Layout";
 }
@@ -10,20 +12,24 @@
     <div class="auth-card" role="region" aria-label="Login form">
         <h1 id="loginHeading">Sign in to your account</h1>
 
-        <form method="post" action="#" class="login-form" autocomplete="on" novalidate>
+        <form asp-controller="Login" asp-action="Login" method="post" class="login-form" autocomplete="on" novalidate>
+            @Html.AntiForgeryToken()
+
             <div class="field">
-                <label for="username">Username</label>
-                <input id="username" name="username" type="text" required placeholder="username..." />
+                <label asp-for="Username"></label>
+                <input asp-for="Username" id="username" required placeholder="username..." />
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
             <div class="field">
-                <label for="password">Password</label>
-                <input id="password" name="Password" type="password" required minlength="6" placeholder="••••••••" />
+                <label asp-for="Password"></label>
+                <input asp-for="Password" id="password" type="password" required minlength="6" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="row">
                 <label class="checkbox">
-                    <input type="checkbox" name="RememberMe" />
+                    <input  type="checkbox" />
                     <span>Remember me</span>
                 </label>
                 <a class="text-link" href="/Account/ForgotPassword">Forgot?</a>
@@ -44,4 +50,8 @@
         <p class="lead">Welcome back — sign in to manage your orders and checkout faster.</p>
     </aside>
 </section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
