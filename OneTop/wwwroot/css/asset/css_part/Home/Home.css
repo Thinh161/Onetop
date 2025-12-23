@@ -228,3 +228,14 @@
 
     .home-page .product-media img { height: 140px; }
 }
+
+.alert {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    padding: 14px 20px;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    z-index: 999;
+}

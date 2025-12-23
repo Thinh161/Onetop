@@ -3,6 +3,14 @@
 }
 @model List<OneTop.Models.Product>
 
+
+    @if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
 <main class="home-page">
     <section class="hero-section">
         <div class="hero-content">

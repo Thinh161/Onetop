@@ -155,3 +155,29 @@
     text-decoration: none;
     color: black;
 }
+
+
+.cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .qty-btn:hover {
+        background: #000;
+        color: #fff;
+    }

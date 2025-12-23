@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/asset/css_part/Home/Cart.css" asp-append-version="true" />
 }
 
+
 <div class="cart-container">
     <!-- LEFT -->
     <div class="cart-left">
@@ -28,10 +29,19 @@
                     </p>
 
                     <div class="cart-qty">
-                        <button>-</button>
+                        <a asp-controller="Cart"
+                           asp-action="Decrease"
+                           asp-route-id="@item.ProductId"
+                           class="qty-btn">-</a>
+
                         <span>@item.Quantity</span>
-                        <button>+</button>
+
+                        <a asp-controller="Cart"
+                           asp-action="Increase"
+                           asp-route-id="@item.ProductId"
+                           class="qty-btn">+</a>
                     </div>
+
                 </div>
 
                 <div class="cart-item-subtotal">
