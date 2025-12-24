@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model List<OneTop.Models.Order>
+
+@section Styles {
+    <link rel="stylesheet" href="~/admin/css/asset/css_part/Order/OrderManager.css" asp-append-version="true" />
+}
+
+<main class="admin-order-manager">
+    <h1>Order Management</h1>
+
+    <table class="order-table" aria-describedby="order-list">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Order Date</th>
+                <th>Total Amount</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="order-list">
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>
+                    @(
+                        order.User != null
+                            ? (!string.IsNullOrWhiteSpace(order.User.FullName) ? order.User.FullName : order.User.Username)
+                            : (order.UserId.HasValue ? ($"UserId: {order.UserId}") : "-")
+                    )
+                </td>
+                <td>@(order.OrderDate?.ToString("g") ?? "-")</td>
+                <td>@(order.TotalAmount?.ToString("C") ?? "-")</td>
+                <td>@order.PaymentMethod</td>
+                <td>@order.Status</td>
+                <td>
+                    <a class="btn btn-sm" asp-area="admin" asp-controller="Order" asp-action="Details" asp-route-id="@order.OrderId">Xac nhan</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</main>
