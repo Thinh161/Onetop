@@ -52,12 +52,12 @@
                         Thêm vào giỏ
                     </a>
 
-                    <a asp-controller="Product"
-                       asp-action="BuyNow"
-                       asp-route-id="@Model.ProductId"
-                       class="btn btn-buy-now">
-                        Mua ngay
-                    </a>
+                <a asp-controller="Cart"
+                   asp-action="BuyNow"
+                   asp-route-id="@Model.ProductId"
+                   class="btn-buy-now">
+                    Buy Now
+                </a>
                 </div>
 
 

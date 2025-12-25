@@ -1,0 +1,51 @@
+﻿@model List<OneTop.Models.OrderDetail>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var order = ViewBag.Order as OneTop.Models.Order;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/asset/css_part/Home/OrderDetail.css" asp-append-version="true" />
+}
+
+<div class="order-detail-container">
+    <h2>CHI TIẾT ĐƠN HÀNG #@order.OrderId</h2>
+
+    <p>
+        Ngày đặt: @order.OrderDate?.ToString("dd/MM/yyyy") <br />
+        Trạng thái: <strong>@order.Status</strong>
+    </p>
+
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in Model)
+            {
+                <tr>
+                    <td>@d.Product?.ProductName</td>
+                    <td>@d.UnitPrice?.ToString("N0") đ</td>
+                    <td>@d.Quantity</td>
+                    <td>@((d.UnitPrice * d.Quantity)?.ToString("N0")) đ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>
+        Tổng tiền:
+        <span style="color:red">
+            @order.TotalAmount?.ToString("N0") đ
+        </span>
+    </h3>
+
+    <a asp-action="History" class="btn-back">
+        ← Quay lại lịch sử
+    </a>
+</div>

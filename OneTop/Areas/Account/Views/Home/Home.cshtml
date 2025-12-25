@@ -68,7 +68,13 @@
                         </a>
 
 
-                        <a asp-controller="Product" asp-action="BuyNow" asp-route-id="1" class="btn-buy-now">Buy Now</a>
+                        <a asp-controller="Cart"
+                           asp-action="BuyNow"
+                           asp-route-id="@item.ProductId"
+                           class="btn-buy-now">
+                            Buy Now
+                        </a>
+
                     </div>
                 </div>
             }

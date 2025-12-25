@@ -107,6 +107,38 @@ namespace OneTop.Areas.Account.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult BuyNow(int id)
+        {
+            var product = ctx.Products.SingleOrDefault(p => p.ProductId == id);
+            if (product == null)
+            {
+                TempData["Message"] = "Sản phẩm không tồn tại";
+                return RedirectToAction("Index", "Home");
+            }
+
+            CartItemModel item = new CartItemModel
+            {
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                Quantity = 1
+            };
+
+            List<CartItemModel> list =
+                HttpContext.Session.GetObject<List<CartItemModel>>("cart") ?? new();
+
+            CartModel cart = new CartModel();
+            cart.items = list;
+            cart.Add(item);
+
+            HttpContext.Session.SetObject("cart", cart.getAllItems());
+
+            // 👉 CHUYỂN THẲNG QUA GIỎ HÀNG
+            return RedirectToAction("Index");
+        }
+
+
 
     }
 }

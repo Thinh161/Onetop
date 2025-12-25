@@ -1,0 +1,48 @@
+﻿@model List<OneTop.Models.Order>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/asset/css_part/Home/History.css" asp-append-version="true" />
+}
+
+<div class="order-history-container">
+    <h2 class="history-title">LỊCH SỬ ĐƠN HÀNG</h2>
+
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>Mã đơn</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Thanh toán</th>
+                <th>Trạng thái</th>
+                <th>Xem chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var o in Model)
+            {
+                <tr>
+                    <td>#@o.OrderId</td>
+                    <td>@o.OrderDate?.ToString("dd/MM/yyyy")</td>
+                    <td>@o.TotalAmount?.ToString("N0") đ</td>
+                    <td>@o.PaymentMethod</td>
+                    <td>
+                        <span class="status @o.Status.Replace(" ", "")">
+                            @o.Status
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-controller="Order"
+                            asp-action="Details"
+                           asp-route-id="@o.OrderId"
+                           class="btn-detail">
+                            Xem chi tiết
+                        </a>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
