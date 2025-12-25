@@ -1,0 +1,62 @@
+﻿@model List<OneTop.Models.User>
+@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/admin/css/css_part/admin/user-management.css" asp-append-version="true" />
+
+<div class="user-management">
+    <h2>User Management</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>UserId</th>
+            <th>Username</th>
+            <th>FullName</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Username</td>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                    <td>
+                        <form asp-area="Admin" asp-controller="User" asp-action="DeleteUser" method="post" onsubmit="return confirm('Delete this user?');">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@user.UserId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">No users found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</div>
+    

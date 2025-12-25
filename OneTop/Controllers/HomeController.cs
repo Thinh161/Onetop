@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using OneTop.Models;
 using Microsoft.AspNetCore.Mvc;
-
 namespace OneTop.Controllers
 {
     public class HomeController : Controller

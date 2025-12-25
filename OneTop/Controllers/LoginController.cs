@@ -72,11 +72,11 @@ namespace OneTop.Controllers
                     HttpContext.Session.SetString("Role", existingUser.Role ?? "User");
                     if (existingUser.Role == "Admin")
                     {
-                        return RedirectToAction("Dashboard", "Dashboard", new { area = "Admin" });
+                        return RedirectToAction("OrderManagement", "Order", new { area = "Admin" });
                     }
                     else
                     {
-                        return RedirectToAction("Home", "Home", new { area = "Account" });
+                        return RedirectToAction("Index", "Home", new { area = "Account" });
                     }
                 }
                 else

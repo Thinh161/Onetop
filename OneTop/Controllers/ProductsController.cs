@@ -2,7 +2,7 @@
 using OneTop.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OneTop.Areas.Account.Controllers
+namespace OneTop.Controllers
 {
  
     public class ProductsController : Controller

@@ -10,7 +10,7 @@
         <div class="hero-content">
             <h1>Welcome to ClothingStore</h1>
             <p>Your one-stop shop for the latest fashion trends.</p>
-            <a asp-controller="Products" asp-action="AllProduct" class="btn-shop-now">Shop Now</a>
+            <a asp-area="Account" asp-controller="Products" asp-action="AllProduct" class="btn-shop-now">Shop Now</a>
         </div>
     </section>
     <section class="featured-products">
@@ -34,7 +34,7 @@
 
                     <div class="product-info">
                         <h3 class="product-name">
-                            <a asp-controller="Products"
+                            <a asp-area="Account" asp-controller="Products"
                                asp-action="Detail"
                                asp-route-id="@item.ProductId">
                                 @item.ProductName
